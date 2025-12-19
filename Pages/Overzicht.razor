@@ -1,0 +1,87 @@
+@page "/overzicht"
+@using Blazor.Models
+
+<PageTitle>Overzicht</PageTitle>
+
+
+
+<div class="container">
+    <div class="row">
+        <h1><strong>Overzicht Top 5 Skateboarders van 2025</strong></h1>
+    </div>
+
+    <div class="row">
+        
+        @foreach (var skater in skaters)
+        {
+
+            <div class=@Col>
+                <div class="card m-2" style="width: 18rem;">
+                    <img src="@skater.Picture" class="card-img-top p-1 img-fluid" alt="@skater.Naam picture">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <h5 class="card-title">@skater.Naam</h5>
+                                <div class="mr-1">@skater.Land</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="w-30">
+                                    <img class="img-fluid" style="border: solid 1px;" src="@skater.Flag" alt="Flag of @skater.Flag" />
+                                </div>
+                            </div>
+                        </div>
+                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text">
+                            World Ranking: @skater.WorldRanking <br />
+                            Leeftijd: @skater.Leeftijd <br />
+                            Stance: @skater.Stance
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
+
+
+@code
+{
+
+    List<Skater> skaters = new List<Skater>
+    {
+    new Skater("Sora Shirai", "Japan", 24, "Goofy", 1, "images/japan.png", "images/soraPic.png"),
+    new Skater("Netsuke Kairi", "Japan", 22, "Regular", 2, "images/japan.png", "images/kairiPic.png"),
+    new Skater("Aoki Yukito", "Japan", 22, "Regular", 3, "images/japan.png", "images/yukitoPic.png"),
+    new Skater("Matias Dell Olio", "Argentinië", 29, "Goofy", 4, "images/argentina.png", "images/matiasPic.png"),
+    new Skater("Giovanni Vianna", "Brazilië", 24, "Regular", 5, "images/brazil.png", "images/giovanniPic.png")
+    };
+
+    List<string> landImg = new List<string>();
+
+    public string Col
+    {
+        get
+        {
+            foreach (var skateboy in skaters)
+            {
+                if (skateboy.Land == "Argentinië")
+                {
+                    return "col-5";
+                }
+                else if (skateboy.Land == "Brazilië")
+                {
+                    return "col-6";
+                }
+                else
+                {
+                    return "col-4";
+                }
+            }
+            return Col;
+        }
+    }
+}

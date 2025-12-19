@@ -1,0 +1,53 @@
+﻿@page "/"
+<PageTitle>Home</PageTitle>
+
+
+
+<div class="container">
+    <div class="row">
+        <h1>
+            <strong>@Greet</strong> <br />welkom bij de World Cup Kitakyushu 2025 Street
+        </h1>
+
+        <p class="">
+            Skateboarden is meer dan een sport - het is een cultuur, een levensstijl en een kunstvorm.
+            Op deze website ontdek je de
+            <strong>Top 5 skateboarders ter wereld</strong>
+            , ieder met hun
+            eigen unieke stijl, prestaties en invloed op de scene.
+        </p>
+        <hr />
+        <p class="">
+            De ultieme internationale street sportcompetitie komt naar Kitakyushu! Atleten van over de hele wereld strijden in een dynamische mix van urban cultuur, sportieve prestaties en grensverleggende creativiteit. Beleef de energie van de straten, 
+            ontdek de nieuwste trends en laat je meeslepen door een festival dat sport en lifestyle samenbrengt.
+        </p>
+    </div>
+    <div class="row w-50">
+        <img src="images/olympicLogo.png" class="d-block w-100" alt="...">
+    </div>
+</div>
+
+
+
+@code
+{
+    private string Greet
+    {
+        get
+        {
+            int hour = DateTime.Now.Hour;
+            if (hour < 12)
+            {
+                return "Goede morgen,";
+            }
+            else if (hour < 18)
+            {
+                return "Goede middag,";
+            }
+            else
+            {
+                return "Goede avond,";
+            }
+        }
+    }
+}

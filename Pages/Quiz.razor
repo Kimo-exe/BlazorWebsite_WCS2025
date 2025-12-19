@@ -1,0 +1,155 @@
+﻿@page "/quiz"
+@using Blazor.Models
+@using System.Threading.Tasks
+
+<PageTitle>WCS Skateboarding 2025 Quiz</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <h3>Quiz</h3>
+        <hr />
+    </div>
+    <div class="row align-content-center">
+        <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar w-@progression"></div>
+        </div>
+    </div>
+    <div class="row">
+        @if (questionCount == 0)
+        {
+            <h4>Wie is de winnaar van de <strong>World Cup Skateboarding in Kitakyushu 2025</strong>?</h4>
+        }
+        else if (questionCount == 1)
+        {
+            <h4>Met welke trick is heeft de winnaar de eerste plek genomen?</h4>
+        }
+        else if (questionCount == 2)
+        {
+            <h4>Wie is de <strong>oudste</strong> deelnemer van de WCS in Kitakyushu 2025?</h4>
+        }
+        else if (questionCount == 3)
+        {
+            <h4>Welk <strong>land</strong> heeft de WCS Kitakyashu 2025 gedomineerd?</h4>
+        }
+        else if (questionCount == 4)
+        {
+            <h4>Welke skater in de top 5 wordt gesponsored door <strong>Coca-Cola</strong>?</h4>
+        }
+        else
+        {
+            <h4><strong>@Result()</strong></h4>
+
+        }
+    </div>
+    <div class="row">
+        @if(questionCount > 4)
+        {
+            <h5>Je hebt @_score / 4 behaald!</h5>
+        }
+    </div>
+    <div class="row">
+        <div class="row">
+            @if (questionCount == 0)
+            {
+                <button @onclick="Pressed" type="button" class="mb-2 btn bg-info">Nyjah Huston</button>
+            }
+            else if (questionCount == 1)
+            {
+                <button @onclick="Pressed" type="button" class="mb-2 btn bg-info">Kickflip</button>
+            }
+            else if (questionCount == 2)
+            {
+                <button @onclick="PressedCorrectAnswer" type="button" class="mb-2 btn bg-info">Matias Dell Olio</button>
+            }
+            else if (questionCount == 3)
+            {
+                <button @onclick="Pressed" type="button" class="mb-2 btn bg-info">Australië</button>
+            }
+            else if (questionCount == 4)
+            {
+                <button @onclick="Pressed" type="button" class="mb-2 btn bg-info">Netsuke Kairi</button>
+            }
+        </div>
+        <div class="row">
+            @if (questionCount == 0)
+            {
+                <button @onclick="PressedCorrectAnswer" type="button" class="mb-2 btn bg-info">Sora Shirai</button>
+            }
+            else if (questionCount == 1)
+            {
+                <button type="button" class="mb-2 btn bg-info">Bigspin Frontside Boardslide</button>
+            }
+            else if (questionCount == 2)
+            {
+                <button @onclick="Pressed" type="button" class="mb-2 btn bg-info">Gustavo Ribeiro</button>
+            }
+            else if (questionCount == 3)
+            {
+                <button @onclick="Pressed" type="button" class="mb-2 btn bg-info">China</button>
+            }
+            else if (questionCount == 4)
+            {
+                <button @onclick="PressedCorrectAnswer" type="button" class="mb-2 btn bg-info">Aoki Yukito</button>
+            }
+        </div>
+        <div class="row">
+            @if (questionCount == 0)
+            {
+                <button @onclick="Pressed" type="button" class="mb-2 btn bg-info">Tony Hawk</button>
+            }
+            else if (questionCount == 1)
+            {
+                <button @onclick="PressedCorrectAnswer" type="button" class="mb-2 btn bg-info">Backside 180 Switch Nosegrind</button>
+            }
+            else if (questionCount == 2)
+            {
+                <button @onclick="Pressed" type="button" class="mb-2 btn bg-info">Aoki Yukito</button>
+            }
+            else if (questionCount == 3)
+            {
+                <button @onclick="PressedCorrectAnswer" type="button" class="mb-2 btn bg-info">Japan</button>
+            }
+            else if (questionCount == 4)
+            {
+                <button @onclick="Pressed" type="button" class="mb-2 btn bg-info">Dashawn Jordan</button>
+            }
+        </div>
+    </div>
+
+</div>
+
+
+
+@code
+{
+    private int _score = 0;
+    private int progression = 0;
+    private int questionCount = 0;
+    private string result;
+
+    private string Result()
+    {
+        if (_score < 3)
+        {
+            result = "Gefaald!";
+        }
+        else
+        {
+            result = "Gefeliciteerd!";
+        }
+
+        return result;
+    }
+
+    private void Pressed()
+    {
+        questionCount++;
+        progression += 25;
+    }
+    private void PressedCorrectAnswer()
+    {
+        questionCount++;
+        progression += 25;
+        _score++;
+    }
+}
